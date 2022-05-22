@@ -14,15 +14,15 @@ class UserInfoSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        // $users=User :: all();
-        //     foreach($users as $user){
-        //      UserInfo :: create([
-        //         'user_id' =>$user->id,
-        //         'address' =>$faker->address(),
-        //         'phone'    =>$faker->phoneNumber(),
-        //         'birth'    =>$faker->date()
-        //     ]);
-        // }
+        $users=User :: all();
+            foreach($users as $user){
+             UserInfo :: create([
+                'user_id' =>$user->id,
+                'address' =>$faker->address(),
+                'phone'    =>$faker->phoneNumber(),
+                'birth'    =>$faker->date()
+            ]);
+        }
                                   
     }
 }
