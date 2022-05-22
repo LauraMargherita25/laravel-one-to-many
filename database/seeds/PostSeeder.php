@@ -17,7 +17,7 @@ class PostSeeder extends Seeder
         for($i=0; $i < 100; $i++){
             $title = $faker->words(rand(2, 10), true);
             Post::create([
-                // 'user_id'  =>User :: inRandomOrder()->first()->id,
+                'user_id'  =>User :: inRandomOrder()->first()->id,
                 'title'    => $title,
                 'content'  => $faker->text(rand(200, 1000)),
                 'slug'     => Post::generateSlug($title),
