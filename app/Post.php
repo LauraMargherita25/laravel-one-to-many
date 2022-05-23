@@ -25,7 +25,11 @@ class Post extends Model
         return $slug;
     }
 
-    public function posts() {
+    public function user() {
         return $this->belongsTo('App\User');
+    }
+
+    public function category() {
+        return $this->belongsTo('App\Category');
     }
 }
