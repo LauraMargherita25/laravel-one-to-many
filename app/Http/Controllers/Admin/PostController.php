@@ -76,7 +76,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        // return view('admin.posts.create');
+
+        $categories = \App\Category::all();
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -89,7 +92,10 @@ class PostController extends Controller
     {
         $request->validate($this->getValidators(null));
 
-        $post = Post::create($request->all());
+        $formData = $request->all() + [
+            'user_id' => Auth::user()->id
+        ];
+        $post = Post::create($formData);
 
         return redirect()->route('admin.posts.show', $post->slug);
     }
@@ -113,6 +119,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        if (Auth::user()->id !== $post->user_id) abort(403);
         return view('admin.posts.edit', compact('post'));
     }
 
@@ -125,6 +132,8 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        if (Auth::user()->id !== $post->user_id) abort(403);
+
         $request->validate($this->getValidators($post));
 
         $post->update($request->all());
@@ -140,8 +149,13 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if (Auth::user()->id !== $post->user_id) abort(403);
+
         $post->delete();
 
-        return redirect()->route('admin.posts.index');
+        if (url()->previous() === route('admin.posts.edit', $post->slug)) {
+            return redirect()->route('admin.home')->with('status', "Post $post->title deleted");;
+        }
+        return redirect(url()->previous())->with('status', "Post $post->title deleted");;
     }
 }
