@@ -20,6 +20,7 @@ class PostController extends Controller
 
     private function getValidators($model) {
         return [
+            // 'user_id'   => 'required|exists:App\User,id',
             'title'     => 'required|max:100',
             'slug' => [
                 'required',
@@ -91,12 +92,12 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate($this->getValidators(null));
-
+        
         $formData = $request->all() + [
             'user_id' => Auth::user()->id
         ];
         $post = Post::create($formData);
-
+        
         return redirect()->route('admin.posts.show', $post->slug);
     }
 

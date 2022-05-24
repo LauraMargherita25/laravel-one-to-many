@@ -31,6 +31,7 @@
                     <a class="btn btn-primary" href="{{ route('admin.posts.index') }}">All post</a>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>

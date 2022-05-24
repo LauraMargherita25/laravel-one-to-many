@@ -17,8 +17,8 @@ class UserInfoSeeder extends Seeder
         $users=User :: all();
             foreach($users as $user){
              UserInfo :: create([
-                'user_id' =>$user->id,
-                'address' =>$faker->address(),
+                'user_id'  =>$user->id,
+                'address'  =>$faker->address(),
                 'phone'    =>$faker->phoneNumber(),
                 'birth'    =>$faker->date()
             ]);
