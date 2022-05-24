@@ -40161,6 +40161,12 @@ if (confirmationOverlay) {
   });
 }
 
+var btnUserDropDownMenu = document.querySelector('#navbarDropdown');
+var userDropDownMenu = document.querySelector('.dropdown-menu');
+btnUserDropDownMenu.addEventListener('click', function () {
+  userDropDownMenu.classList.toggle('d-block');
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

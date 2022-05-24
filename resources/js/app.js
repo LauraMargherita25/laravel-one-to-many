@@ -68,4 +68,9 @@ if (confirmationOverlay) {
 
 }
 
+const btnUserDropDownMenu = document.querySelector('#navbarDropdown');
+const userDropDownMenu = document.querySelector('.dropdown-menu');
 
+btnUserDropDownMenu.addEventListener('click', function() {
+    userDropDownMenu.classList.toggle('d-block');
+})
