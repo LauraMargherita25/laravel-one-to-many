@@ -121,7 +121,14 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         if (Auth::user()->id !== $post->user_id) abort(403);
-        return view('admin.posts.edit', compact('post'));
+
+        $categories = Category::all();
+        // dd($categories);
+
+        return view('admin.posts.edit', [
+            'post'          => $post,
+            'categories'    => $categories,
+        ]);
     }
 
     /**

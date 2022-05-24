@@ -36,6 +36,17 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
+                    <select class="form-select" aria-label="Default select example" name="category_id" id="category">
+                        <option value="">Select a category</option>
+
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}"
+                                @if ($category->id == old('category_id', $post->category->id)) selected @endif>
+                                    {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+
                     <button>Update</button>
                     <input id="btn-delete" type="button" value="Delete">
 
