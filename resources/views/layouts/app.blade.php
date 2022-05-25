@@ -26,6 +26,8 @@
 
         @include('partials.header')
 
+        {{-- <x-navbar color="light" /> --}}
+
         <main>
             @yield('PageContent')
         </main>
